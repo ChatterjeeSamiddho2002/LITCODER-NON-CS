@@ -1,0 +1,13 @@
+
+import java.util.*;
+public class Main{
+public static void main(String[]args){
+Scanner S=new Scanner(System.in);
+String D="";
+String C=S.nextLine();
+int L=C.length();
+for(int i=L-1; i>=0;i--)
+D=D+C.charAt(i);
+System.out.println(D);
+}
+}
