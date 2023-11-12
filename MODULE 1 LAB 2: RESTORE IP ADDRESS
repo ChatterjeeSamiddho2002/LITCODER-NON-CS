@@ -1,0 +1,40 @@
+//Code was written with help from Siddhabrata Mohapatra
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner S = new Scanner(System.in);
+        
+        String St = S.next();
+        Restore(St, 0, "");
+
+       S.close();
+    
+
+    private static void Restore(String s, int Seg, String Curr) {
+        if (Seg == 4) {
+            if (s.isEmpty()) {
+                
+                System.out.print(current.substring(1) + " "); // Remove the leading dot
+            }
+            return;
+        }
+
+        for (int i = 1; i <= Math.min(3, s.length()); i++) {
+            String P = s.substring(0, i);
+
+            if (isValidPart(part)) {
+                restoreIPAddresses(s.substring(i), Seg + 1, Curr + "." + P);
+            }
+        }
+    }
+
+    private static boolean isValidPart(String P) {
+        if (P.length() > 1 && part.charAt(0) == '0') {
+            return false; // Leading zero is not allowed
+        }
+
+        int value = Integer.parseInt(P);
+        return value >= 0 && value <= 255;
+    }
+}
