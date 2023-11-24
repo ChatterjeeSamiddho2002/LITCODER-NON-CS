@@ -1,0 +1,56 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        
+        int numRows = scanner.nextInt();
+
+        
+        String[] grid = new String[numRows];
+        for (int i = 0; i < numRows; i++) {
+            grid[i] = scanner.nextLine();
+        }
+
+        boolean isSorted = isSortedGrid(grid);
+        if (isSorted) {
+            System.out.println("YES");
+        } else {
+            System.out.println("NO");
+        }
+    }
+
+    private static boolean isSortedGrid(String[] grid) {
+        for (String row : grid) {
+            if (!isSortedRow(row)) {
+                return false;
+            }
+        }
+
+        for (int colIndex = 0; colIndex < grid[0].length(); colIndex++) {
+            String column = getColumn(grid, colIndex);
+            if (!isSortedRow(column)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private static boolean isSortedRow(String row) {
+        char[] chars = row.toCharArray();
+        Arrays.sort(chars);
+        return Arrays.equals(chars, row.toCharArray());
+    }
+
+    private static String getColumn(String[] grid, int colIndex) {
+        StringBuilder column = new StringBuilder();
+        for (String row : grid) {
+            column.append(row.charAt(colIndex));
+        }
+        return column.toString();
+    }
+}
+                                                                                                                            
