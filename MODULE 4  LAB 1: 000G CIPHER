@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+public class Main {
+    private static boolean isLower(String str){
+        for(char ch : str.toCharArray()){
+            if (Character.isUpperCase(ch))
+                return false;
+        }
+        return true;
+    }
+
+    private static String encrypt(String word, String operator, int key){
+        StringBuilder temp = new StringBuilder(word.length());
+        int op = (operator.equals("addition"))?0:1;
+        int offset;
+        for(char ch : word.toCharArray()){
+            offset = 'Z'-ch;
+            if(op==0)
+                offset += key;
+            else
+                offset -= key;
+            temp.append((char)('A'+(((offset%26)+26)%26)));
+        }
+        return temp.toString();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int key;
+        try {
+            key = Integer.parseInt(sc.nextLine());
+        }catch(NumberFormatException e){
+            System.out.println("Enter valid key");
+            return;
+        }
+        String op = sc.nextLine();
+        if (!(op.equals("addition") || op.equals("subtraction"))){
+            System.out.println("Invalid Operation");
+            return;
+        }
+        String word = sc.nextLine();
+        if (isLower(word)){
+            System.out.println("Word should be in capitals");
+            return;
+        }
+        String result = encrypt(word, op, key);
+        System.out.println(result);
+        sc.close();
+    }
+}
